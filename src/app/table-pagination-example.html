@@ -1,0 +1,18 @@
+
+<br/>
+{{colObjArr | json}} <br/>
+<button type="submit" disabled [attr.disabled]="(disableBtn)?disableBtn:null">Add</button><br/>
+{{vmList.size}} <br/>
+<span *ngFor="let vm of vmList">{{vm}}<br/></span>
+
+  <mat-table #table [dataSource]="dataSource" class="mat-elevation-z8">
+
+    <ng-container *ngFor="let column of colObjArr" [matColumnDef]="column.columnDef">
+      <mat-header-cell *matHeaderCellDef>{{ column.header }}</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{ column.cell(row) }}</mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+
+ 
